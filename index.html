@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+OH WELL HELLO THERE STRANGER!
+This code is super messy because I'm still learning JavaScript. Expect things to change for the better. C:
+Feel free to use what you see here, but please credit me/the sources.
+
+Have a great day!
+ -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Sophia Li
+    </title>
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel='stylesheet' href='css/stylesheet.css'  type="text/css"/>
+    <script src="js/jquery-1.7.2.min.js"></script>
+
+</head>
+
+<body>
+<div class="content">
+<div class="container_home">
+    </br>
+    Sophia Li. Roboticist. </br></br>
+    > &nbsp; say hello at: <a href="mailto:hello@justsophie.com?Subject=Hello">hello@justsophie.com</a></br>
+    <div class="text">> &nbsp;</div>
+    <div class="writer">./menu</div>
+    <div class="menu">
+        </br>
+        </br>
+        Welcome.</br>
+        Where would you like to go next?</br>
+            <ol style="width: 100px;">
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="resume.html">Resume</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="http://blog.justsophie.com">Blog</a></li>
+            </ol>
+        </br>
+    <div class="text">> &nbsp;</div>
+    </div>
+    <div class="m_name"></div>
+    <div class="m_desc"></div>
+    <div class="m_spacer">>&nbsp;</div>
+    <div class="cursor">|</div>
+</div>
+<!-- <div class="footer">&copy; Sophia Li 2016</div> -->
+</div>
+
+<script type="text/javascript">
+$('.menu').hide();
+$('.m_name').hide();
+$('.m_desc').hide();
+$('.m_spacer').hide();
+
+var captionLength = 0;
+var caption = '';
+var menu_name = new Array();
+menu_name[0] = "portfolio"
+menu_name[1] = "resume"
+menu_name[2] = "about"
+menu_name[3] = "contact"
+menu_name[4] = "blog"
+
+var menu_desc = new Array();
+menu_desc[0] = "Links to a list of currenly documented projects</br></br>"
+menu_desc[1] = "Links to an online copy of my resume</br></br>"
+menu_desc[2] = "Links to about me page for more information</br></br>"
+menu_desc[3] = "<a href='https://github.com/srli' target='_blank'>Github</a>&nbsp;&nbsp;<a href='https://www.linkedin.com/in/sophia-li-8726b37b' target='_blank'>LinkedIn</a></br>Links to additional ways to find me</br>"
+menu_desc[4] = "Forwards to my external blog.</br></br>"
+
+$(document).ready(function(){
+
+    setInterval('cursorAnimate()', 800);
+    captionEl = $('.writer');
+    caption = captionEl.html();
+    captionEl.html('');
+
+    setTimeout('type()', 500);
+
+    $(".menu li").hover(function(){
+        $(this).addClass("hover");
+        $('.m_name').html(menu_name[$(this).index()]).show();
+        $('.m_desc').html(menu_desc[$(this).index()]).show();
+        $('.m_spacer').show();
+    }, function(){
+        $(this).removeClass("hover");
+    });
+
+});
+
+function type() {
+    captionEl.html(caption.substr(0, captionLength++));
+    if(captionLength < caption.length+1) {
+        setTimeout('type()', Math.floor(Math.random() * 100) + 60 );
+    } else {
+        captionLength = 0;
+        caption = '';
+        setTimeout("$('.menu').show()", 1000);
+    }
+}
+
+function cursorAnimate(){
+$('.cursor').animate({
+    opacity: 0
+}, 'medium', 'swing').animate({
+    opacity: 1
+}, 'medium', 'swing');
+}
+
+</script>
+</body>
+</html>
